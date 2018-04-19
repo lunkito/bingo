@@ -1,3 +1,3 @@
-Codepen - https://codepen.io/kimpow/pen/mLbzPY.
-Github pages - https://lunkito.github.io/bingo/
- 
+
+[Bingo](https://codepen.io/kimpow/pen/mLbzPY)
+[Dados](https://codepen.io/kimpow/pen/eMqPJV)
