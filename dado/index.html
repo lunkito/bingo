@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>A Pen by  Pablo</title>
+  
+  
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+  <div class="container">
+  <div class="dadoContainer">
+    <div class="dado" id="dadoUno">1</div>
+    <button onClick="tirarDado('dadoUno', 'listaUno')">Lanzar</button>
+  </div>
+  <div class="dadoContainer">
+    <div class="dado" id="dadoDos">2</div>
+    <button onClick="tirarDado('dadoDos', 'listaDos')">Lanzar</button>
+  </div>
+  <div class="dadoContainer">
+    <div class="dado" id="dadoTres">3</div>
+    <button onClick="tirarDado('dadoTres', 'listaTres')">Lanzar</button>
+  </div>
+</div>
+
+<div class="container">
+  <ul id="listaUno"><li></li></ul>
+  <ul id="listaDos"><li></li></ul>
+  <ul id="listaTres"><li></li></ul>
+</div>
+
+<div class="container">
+  <button onClick="reset('listaUno')">Reset</button>
+  <button onClick="reset('listaDos')">Reset</button>
+  <button onClick="reset('listaTres')">Reset</button>
+</div>
+  
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>
