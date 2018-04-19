@@ -1,0 +1,118 @@
+body {
+  margin: 3em auto 0 auto;
+  width: 700px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: bolder;
+  color: #011f4b;
+}
+.card {
+  width: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 1px solid #011f4b;
+  position: relative;
+}
+.card .number {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #011f4b;
+  line-height: 38px;
+}
+.card .number.active-line1::before {
+  content: ">";
+  position: absolute;
+  left: -20px;
+  top: 0px;
+  color: #02347d;
+}
+.card .number.active-line1::after {
+  content: "<";
+  position: absolute;
+  left: 210px;
+  top: 0px;
+  color: #02347d;
+}
+.card .number.active-line2::before {
+  content: ">";
+  position: absolute;
+  left: -20px;
+  top: 40px;
+  color: #02347d;
+}
+.card .number.active-line2::after {
+  content: "<";
+  position: absolute;
+  left: 210px;
+  top: 40px;
+  color: #02347d;
+}
+.card .number.active-line3::before {
+  content: ">";
+  position: absolute;
+  left: -20px;
+  top: 80px;
+  color: #02347d;
+}
+.card .number.active-line3::after {
+  content: "<";
+  position: absolute;
+  left: 210px;
+  top: 80px;
+  color: #02347d;
+}
+.card .rejected {
+  color: white;
+  background: #02347d;
+}
+button {
+  margin-top: 20px;
+  width: 80px;
+  background: white;
+  border: 2px solid #011f4b;
+  border-radius: 3px;
+  padding: 5px;
+  color: #011f4b;
+  cursor: pointer;
+  font-weight: bold;
+}
+button:hover {
+  color: white;
+  background: #011f4b;
+}
+.random .dice {
+  width: 120px;
+  height: 120px;
+  border: 2px solid #011f4b;
+  font-size: 46px;
+  line-height: 110px;
+  text-align: center;
+}
+.modal {
+  display: none;
+  color: white;
+}
+.modal.active {
+  display: block;
+  position: absolute;
+  top: 2em;
+  left: 2em;
+  right: 2em;
+  bottom: 2em;
+  background: #011f4b;
+  box-shadow: 0 0 0 5em white;
+}
+.modal h1 {
+  margin-top: 3em;
+}
+.modal .button {
+  border: 2px solid #011f4b;
+}
+.modal .button:hover {
+  background: #02347d;
+  border: 2px solid #02347d;
+}
