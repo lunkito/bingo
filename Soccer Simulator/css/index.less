@@ -8,24 +8,34 @@ body {
   color: @main-color;
   font-family: sans-serif;
   text-align: center;
+  // display: grid;
+  // place-items: center;
 }
 
 .container {
-  width: 700px;
+  width: 1000px;
   margin: auto;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
+  display: grid;
+  grid-template-areas: "match match"
+                       "journey season";
+  
+  & > :nth-child(1) { opacity: .3; }
+
+  .journey,
+  .season  { vertical-align: top; }
+  
+  .match { grid-area: match }
+  .season { grid-area: season }
+  .journey { grid-area: journey }
+
   img {
     width: 20px;
     height: 20px;
-  }
-  div {
-    margin: 20px auto;
+    margin: 10px 5px 0;
   }
   table{
-    width: 320px;
-    margin: 0 auto 20px auto;
+    // width: 320px;
+    margin: 20px auto;
     border-collapse: collapse;
     th, td {
       padding: 6px;
