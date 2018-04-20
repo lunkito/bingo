@@ -1,0 +1,55 @@
+// out: index.css, compress: true
+@main-color: #000;
+@bg-color: #fff;
+@bg-text-color: #ccc;
+
+body {
+  background: @bg-color;
+  color: @main-color;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.container {
+  width: 700px;
+  margin: auto;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  img {
+    width: 20px;
+    height: 20px;
+  }
+  div {
+    margin: 20px auto;
+  }
+  table{
+    width: 320px;
+    margin: 0 auto 20px auto;
+    border-collapse: collapse;
+    th, td {
+      padding: 6px;
+    }
+    tbody {
+      tr:nth-child(n){ background: lighten(@bg-text-color, 10%); }      
+      tr:nth-child(2n){ background: @bg-text-color; }
+    }
+  }
+}
+
+button {
+  background: @main-color;
+  color: @bg-color;
+  border: 0;
+  padding: 10px;
+  font-size: 1.25em;
+  cursor: pointer;
+  &::before{
+    content: ">";
+    margin-right: 15px;
+  }
+  &::after{
+    content: "<";
+    margin-left: 15px;
+  }
+}
