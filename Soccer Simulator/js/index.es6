@@ -3,7 +3,9 @@ class Team {
     this.name = name,
     this.logoURL = logoURL,
     this.goal,
+    this.goalAgainst,
     this.totalGoals = 0,
+    this.totalGoalsAgainst = 0,
     this.points = 0
   }
 }
@@ -56,9 +58,8 @@ let newMatch = () => {
   if(teamListCopy.length == 0)
     createTeamListCopy()
   
-    debugger
   // Aqui empieza la chapuza. La informacion del partido va para el original pero el nombre pa que los partidos no se repitan a la copia
-  // Aprovecho que las variables de objetos son por referencia para modificar el original
+  // Aprovecho que las variables de objetos son por referencia para modificar el original.
   let team1 = teamListCopy.pop()
   let team2 = teamListCopy.pop()
 
@@ -70,8 +71,12 @@ let newMatch = () => {
 
   team1Original.goal = goal1
   team2Original.goal = goal2
+  // team1Original.goalAgainst = goal2
+  // team2Original.goalAgainst = goal1
   team1Original.totalGoals += goal1
   team2Original.totalGoals += goal2
+  team1Original.totalGoalsAgainst += goal2
+  team2Original.totalGoalsAgainst += goal1
 
   if (team1Original.goal == team2Original.goal) {
     team1Original.points += 1
@@ -120,7 +125,7 @@ let appendJourneySeason = () => {
   }
 
   // appendSeason
-  teamsArray = _.orderBy(teamsArray, ['points'], "desc")
+  teamsArray = _.orderBy(teamsArray, ['points', 'totalGoals', 'totalGoalsAgainst'], ["desc", "desc", "asc"])
   let tbody = ""
   for (const teamIndex in teamsArray) {
     let tr =
@@ -128,7 +133,8 @@ let appendJourneySeason = () => {
       <td>${1 + Number(teamIndex)}</td>
       <td>${teamsArray[teamIndex].name}</td>
       <td>${teamsArray[teamIndex].points}</td>
-      <td>${teamsArray[teamIndex].totalGoals}</td>  
+      <td>${teamsArray[teamIndex].totalGoals}</td>
+      <td>${teamsArray[teamIndex].totalGoalsAgainst}</td>
     </tr>`
     tbody += tr
   }
