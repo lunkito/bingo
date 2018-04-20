@@ -1,11 +1,9 @@
-"use strict";
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Team = function Team(name, logoURL) {
   _classCallCheck(this, Team);
 
-  this.name = name, this.logoURL = logoURL, this.goal, this.totalGoals = 0, this.points = 0;
+  this.name = name, this.logoURL = logoURL, this.goal, this.goalAgainst, this.totalGoals = 0, this.totalGoalsAgainst = 0, this.points = 0;
 };
 
 var dom = {
@@ -31,11 +29,13 @@ var createTeamList = function createTeamList() {
   var _iteratorError = undefined;
 
   try {
-    for (var _iterator = teamNameList[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    for (var _iterator = teamNameList[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {if (window.CP.shouldStopExecution(1)){break;}
       var teamName = _step.value;
 
       teamList.push(new Team(teamName, ""));
     }
+window.CP.exitedLoop(1);
+
   } catch (err) {
     _didIteratorError = true;
     _iteratorError = err;
@@ -51,9 +51,11 @@ var createTeamList = function createTeamList() {
     }
   }
 
-  for (var teamLogoIndex in teamLogoList) {
+  for (var teamLogoIndex in teamLogoList) {if (window.CP.shouldStopExecution(2)){break;}
     teamList[teamLogoIndex].logoURL = teamLogoList[teamLogoIndex];
   }
+window.CP.exitedLoop(2);
+
 };
 createTeamList();
 
@@ -63,11 +65,13 @@ var createTeamListCopy = function createTeamListCopy() {
   var _iteratorError2 = undefined;
 
   try {
-    for (var _iterator2 = teamList[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+    for (var _iterator2 = teamList[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {if (window.CP.shouldStopExecution(3)){break;}
       var team = _step2.value;
 
       teamListCopy.push(new Team(team.name, team.logoURL));
     }
+window.CP.exitedLoop(3);
+
   } catch (err) {
     _didIteratorError2 = true;
     _iteratorError2 = err;
@@ -91,19 +95,22 @@ createTeamListCopy();
 var randn_bm = function randn_bm() {
   var u = 0,
       v = 0;
-  while (u === 0) {
+  while (u === 0) {if (window.CP.shouldStopExecution(4)){break;}
     u = Math.random();
-  }while (v === 0) {
+  }
+window.CP.exitedLoop(4);
+while (v === 0) {if (window.CP.shouldStopExecution(5)){break;}
     v = Math.random();
-  }return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+  }
+window.CP.exitedLoop(5);
+return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
 };
 
 var newMatch = function newMatch() {
   if (teamListCopy.length == 0) createTeamListCopy();
 
-  debugger;
   // Aqui empieza la chapuza. La informacion del partido va para el original pero el nombre pa que los partidos no se repitan a la copia
-  // Aprovecho que las variables de objetos son por referencia para modificar el original
+  // Aprovecho que las variables de objetos son por referencia para modificar el original.
   var team1 = teamListCopy.pop();
   var team2 = teamListCopy.pop();
 
@@ -119,8 +126,12 @@ var newMatch = function newMatch() {
 
   team1Original.goal = goal1;
   team2Original.goal = goal2;
+  // team1Original.goalAgainst = goal2
+  // team2Original.goalAgainst = goal1
   team1Original.totalGoals += goal1;
   team2Original.totalGoals += goal2;
+  team1Original.totalGoalsAgainst += goal2;
+  team2Original.totalGoalsAgainst += goal1;
 
   if (team1Original.goal == team2Original.goal) {
     team1Original.points += 1;
@@ -134,9 +145,11 @@ var newMatch = function newMatch() {
 
 var newJourney = function newJourney() {
   var total = [];
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < 10; i++) {if (window.CP.shouldStopExecution(6)){break;}
     total.push(newMatch());
-  }return total;
+  }
+window.CP.exitedLoop(6);
+return total;
 };
 
 var appendMatch = function appendMatch() {
@@ -152,26 +165,32 @@ var appendJourneySeason = function appendJourneySeason() {
   dom.journey_result.innerHTML = null;
 
   // Separar parejas de equipos
-  for (var i = 0; i < twoTeamsArray.length; i++) {
+  for (var i = 0; i < twoTeamsArray.length; i++) {if (window.CP.shouldStopExecution(7)){break;}
     teamsArray.push(twoTeamsArray[i][0]);
     teamsArray.push(twoTeamsArray[i][1]);
   }
+window.CP.exitedLoop(7);
+
 
   // appendJourney
-  for (var _i = 0; _i < teamList.length; _i = _i + 2) {
+  for (var _i = 0; _i < teamList.length; _i = _i + 2) {if (window.CP.shouldStopExecution(8)){break;}
     var teamLeft = "<img src=\"" + teamsArray[_i].logoURL + "\"> " + teamsArray[_i].name + " " + teamsArray[_i].goal;
     var teamRight = " - " + teamsArray[_i + 1].goal + " " + teamsArray[_i + 1].name + " <img src=\"" + teamsArray[_i + 1].logoURL + "\"><br>";
 
     dom.journey_result.innerHTML += teamLeft + teamRight;
   }
+window.CP.exitedLoop(8);
+
 
   // appendSeason
-  teamsArray = _.orderBy(teamsArray, ['points'], "desc");
+  teamsArray = _.orderBy(teamsArray, ['points', 'totalGoals', 'totalGoalsAgainst'], ["desc", "desc", "asc"]);
   var tbody = "";
-  for (var teamIndex in teamsArray) {
-    var tr = "<tr>\n      <td>" + (1 + Number(teamIndex)) + "</td>\n      <td>" + teamsArray[teamIndex].name + "</td>\n      <td>" + teamsArray[teamIndex].points + "</td>\n      <td>" + teamsArray[teamIndex].totalGoals + "</td>  \n    </tr>";
+  for (var teamIndex in teamsArray) {if (window.CP.shouldStopExecution(9)){break;}
+    var tr = "<tr>\n      <td>" + (1 + Number(teamIndex)) + "</td>\n      <td>" + teamsArray[teamIndex].name + "</td>\n      <td>" + teamsArray[teamIndex].points + "</td>\n      <td>" + teamsArray[teamIndex].totalGoals + "</td>\n      <td>" + teamsArray[teamIndex].totalGoalsAgainst + "</td>\n    </tr>";
     tbody += tr;
   }
+window.CP.exitedLoop(9);
+
   dom.season.innerHTML = tbody;
 };
 
@@ -182,13 +201,15 @@ var resetSeason = function resetSeason() {
   var _iteratorError3 = undefined;
 
   try {
-    for (var _iterator3 = teamList[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+    for (var _iterator3 = teamList[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {if (window.CP.shouldStopExecution(10)){break;}
       var team = _step3.value;
 
       team.goal = 0;
       team.totalGoals = 0;
       team.points = 0;
     }
+window.CP.exitedLoop(10);
+
   } catch (err) {
     _didIteratorError3 = true;
     _iteratorError3 = err;
