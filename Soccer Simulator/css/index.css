@@ -1,1 +1,63 @@
-body{background:#fff;color:#000;font-family:sans-serif;text-align:center}.container{width:700px;margin:auto}.container img{width:20px;height:20px}.container div{margin:20px auto}.container table{width:320px;margin:0 auto 20px auto;border-collapse:collapse}.container table th,.container table td{padding:6px}.container table tbody tr:nth-child(n){background:#e6e6e6}.container table tbody tr:nth-child(2n){background:#ccc}button{background:#000;color:#fff;border:0;padding:10px;font-size:1.25em;cursor:pointer}button::before{content:">";margin-right:15px}button::after{content:"<";margin-left:15px}
+body {
+  background: #fff;
+  color: #000;
+  font-family: sans-serif;
+  text-align: center;
+}
+.container {
+  width: 1000px;
+  margin: auto;
+  display: grid;
+  grid-template-areas: "match match" "journey season";
+}
+.container > :nth-child(1) {
+  opacity: .3;
+}
+.container .journey,
+.container .season {
+  vertical-align: top;
+}
+.container .match {
+  grid-area: match;
+}
+.container .season {
+  grid-area: season;
+}
+.container .journey {
+  grid-area: journey;
+}
+.container img {
+  width: 20px;
+  height: 20px;
+  margin: 10px 5px 0;
+}
+.container table {
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+.container table th,
+.container table td {
+  padding: 6px;
+}
+.container table tbody tr:nth-child(n) {
+  background: #e6e6e6;
+}
+.container table tbody tr:nth-child(2n) {
+  background: #ccc;
+}
+button {
+  background: #000;
+  color: #fff;
+  border: 0;
+  padding: 10px;
+  font-size: 1.25em;
+  cursor: pointer;
+}
+button::before {
+  content: ">";
+  margin-right: 15px;
+}
+button::after {
+  content: "<";
+  margin-left: 15px;
+}
